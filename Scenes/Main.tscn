@@ -109,5 +109,6 @@ PLAYING = true
 [node name="Paddle" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 266.21, 262.962 )
+PADDLE_CONTROLLER = 0
 
 
