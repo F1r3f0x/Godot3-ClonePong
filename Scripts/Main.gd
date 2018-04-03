@@ -1,12 +1,13 @@
 extends Node2D
 
 export (bool) var TESTING
-export (NodePath) var ball
+export (NodePath) var ballPath
+
+onready var ball = get_node(ballPath)
 
 
 func _ready():
 	randomize()
-	ball = get_node(ball)
 	ball.PLAYING = true
 	ball.start()
 
