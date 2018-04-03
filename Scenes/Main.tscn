@@ -1,23 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/open_sans_bold.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 TESTING = false
-ball = NodePath("Ball")
+ballPath = NodePath("Ball")
 
-[node name="GUI" type="MarginContainer" parent="." index="0"]
+[node name="GUI" type="CanvasLayer" parent="." index="0"]
+
+editor/display_folded = true
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="GUIElements" type="MarginContainer" parent="GUI" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 960.0
-margin_bottom = 46.0
+margin_bottom = -490.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -27,9 +36,9 @@ size_flags_vertical = 1
 custom_constants/margin_right = 20
 custom_constants/margin_top = 0
 custom_constants/margin_left = 20
-_sections_unfolded = [ "Anchor", "Margin", "Rect", "custom_constants" ]
+_sections_unfolded = [ "Pause", "Visibility" ]
 
-[node name="Score" type="HBoxContainer" parent="GUI" index="0"]
+[node name="Score" type="HBoxContainer" parent="GUI/GUIElements" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -47,7 +56,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Margin" ]
 
-[node name="ScoreLeft" type="Label" parent="GUI/Score" index="0"]
+[node name="ScoreLeft" type="Label" parent="GUI/GUIElements/Score" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -69,7 +78,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags", "custom_fonts" ]
 
-[node name="ScoreRight" type="Label" parent="GUI/Score" index="1"]
+[node name="ScoreRight" type="Label" parent="GUI/GUIElements/Score" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -94,6 +103,11 @@ _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags
 
 [node name="Ball" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 526.874, 314.301 )
+position = Vector2( 532.874, 264.301 )
+PLAYING = true
+
+[node name="Paddle" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 266.21, 262.962 )
 
 
