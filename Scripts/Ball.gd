@@ -1,6 +1,6 @@
 # Ball Script
 # F1r3f0x - 2018
-extends Area2D
+extends KinematicBody2D
 
 onready var particles = $Particles
 
@@ -26,8 +26,7 @@ func start():
 
 func _process(delta):
 	# Move ball every frame
-	var new_pos = position + direction.normalized() * SPEED * delta
-	position = new_pos
+	move_and_collide(direction.normalized() * SPEED * delta)
 	
 	# Clamp to walls
 	position.x = clamp(position.x, 0, get_viewport_rect().size.x)
@@ -53,7 +52,3 @@ func get_random_direction():
 	randomize()
 	var x_dir = [-1, 1]
 	return Vector2(x_dir[randi() % 2], rand_range(random_dir_y_min, random_dir_y_max))		
-
-
-func _on_Ball_area_entered(area):
-	print("HIT!")
