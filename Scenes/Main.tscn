@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/open_sans_bold.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/separator.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -101,14 +102,24 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags", "custom_fonts" ]
 
-[node name="Ball" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Separator" type="Sprite" parent="." index="1"]
 
-position = Vector2( 532.874, 264.301 )
-PLAYING = true
+position = Vector2( 512, 300 )
+scale = Vector2( 1.5, 1.5 )
+z_index = -1
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Paddle" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 266.21, 262.962 )
+position = Vector2( 64.5479, 277.366 )
 PADDLE_CONTROLLER = 0
+
+[node name="Ball" parent="." index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 511.697, 285.478 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+SPEED = 300.0
 
 
