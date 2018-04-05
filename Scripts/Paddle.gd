@@ -6,7 +6,8 @@ extends Area2D
 # References
 onready var viewport_size = get_viewport_rect().size
 onready var sprite = $Sprite
-
+onready var particles = preload("res://Scenes/HitParticles.tscn")
+onready var particles_start = $ParticlesStart
 
 # Input Stuff
 enum CONTROLLER {PLAYER_1, PLAYER_2, GAME}
@@ -57,10 +58,10 @@ func _on_Paddle_body_entered(body):
 	
 	# Corner handling
 	var diff_vector = ball.position - position
-	diff_vector = diff_vector.normalized()
-	var abs_diff_y = abs(diff_vector.y)
+	var normal_diff_vector = diff_vector.normalized()
+	var abs_diff_y = abs(normal_diff_vector.y)
 	if abs_diff_y >= CORNER_RANGE:
-		if diff_vector.y >= 0:
+		if normal_diff_vector.y >= 0:
 			ball.direction.y = 1
 		else:
 			ball.direction.y = -1
@@ -68,3 +69,17 @@ func _on_Paddle_body_entered(body):
 	# Add Randomness
 	var randomness = rand_range(RANDOMNESS_RANGE.x, RANDOMNESS_RANGE.y)
 	ball.direction.y += randomness
+
+	## Spawn Particles
+	var hit_particles = particles.instance()
+	particles_start.position = Vector2(diff_vector.x, diff_vector.y)
+	
+	# Calculate rotation degrees
+	var radians_diff = atan2(ball.direction.y, ball.direction.x)
+	var degrees = radians_diff * 180/PI
+	hit_particles.rotation_degrees = degrees
+	
+	hit_particles.position = particles_start.position
+	hit_particles.emitting = true
+	add_child(hit_particles)
+	##
