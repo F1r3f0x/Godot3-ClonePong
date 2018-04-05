@@ -9,7 +9,7 @@ custom_solver_bias = 0.0
 radius = 12.0212
 height = 80.3044
 
-[node name="Paddle" type="Area2D"]
+[node name="Paddle" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -26,6 +26,8 @@ __meta__ = {
 }
 PADDLE_CONTROLLER = 2
 SPEED = 500
+CORNER_RANGE = 0.9
+RANDOMNESS_RANGE = Vector2( -0.05, 0.05 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
