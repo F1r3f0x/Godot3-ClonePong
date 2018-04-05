@@ -8,6 +8,8 @@ const random_dir_y_min = -0.4
 const random_dir_y_max = 0.4
 
 export (bool) var PLAYING
+export (bool) var RANDOM_START_DIRECTION
+export var START_DIRECTION = Vector2()
 export (float) var SPEED
 var direction = Vector2()
 
@@ -21,7 +23,10 @@ func _ready():
 func start():
 	if PLAYING:
 		set_process(true)
-		direction = get_random_direction()
+		if RANDOM_START_DIRECTION:
+			direction = get_random_direction()
+		else:
+			direction = START_DIRECTION
 
 
 func _process(delta):

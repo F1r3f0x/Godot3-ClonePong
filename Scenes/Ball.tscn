@@ -81,6 +81,8 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform" ]
 PLAYING = false
+RANDOM_START_DIRECTION = true
+START_DIRECTION = Vector2( -1, 0 )
 SPEED = 5000.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
