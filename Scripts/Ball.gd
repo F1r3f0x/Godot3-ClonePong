@@ -15,18 +15,21 @@ var direction = Vector2()
 
 
 func _ready():
-	call_deferred("start") # To make sure that is executed after the root node
 	set_process(false)
+	if PLAYING:
+		call_deferred("start") # To make sure that is executed after the root node
 
 
 # Initializes the ball
 func start():
-	if PLAYING:
-		set_process(true)
-		if RANDOM_START_DIRECTION:
-			direction = get_random_direction()
-		else:
-			direction = START_DIRECTION
+	set_process(true)
+	if RANDOM_START_DIRECTION:
+		direction = get_random_direction()
+	else:
+		direction = START_DIRECTION
+		
+func stop():
+	set_process(false)
 
 
 func _process(delta):
@@ -54,6 +57,5 @@ func _process(delta):
 
 
 func get_random_direction():
-	randomize()
 	var x_dir = [-1, 1]
 	return Vector2(x_dir[randi() % 2], rand_range(random_dir_y_min, random_dir_y_max))		
