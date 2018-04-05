@@ -72,7 +72,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Scale", "Spread", "Trail" ]
 
-[node name="Ball" type="KinematicBody2D" index="0"]
+[node name="Ball" type="KinematicBody2D"]
 
 input_pickable = true
 collision_layer = 1
@@ -80,6 +80,9 @@ collision_mask = 2
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
 PLAYING = false
 RANDOM_START_DIRECTION = true
 START_DIRECTION = Vector2( -1, 0 )

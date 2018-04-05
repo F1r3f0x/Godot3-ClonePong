@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/open_sans_bold.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/sprites/separator.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/paddleRed.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -110,20 +111,303 @@ z_index = -1
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Paddle" parent="." index="2" instance=ExtResource( 4 )]
+[node name="PaddleLeft" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 64.5479, 277.366 )
+position = Vector2( 462, 282 )
 PADDLE_CONTROLLER = 0
-CORNER_RANGE = 0.9
-RANDOMNESS_RANGE = Vector2( -0.05, 0.05 )
 
-[node name="Ball" parent="." index="3" instance=ExtResource( 5 )]
+[node name="PaddleRight" parent="." index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 511.697, 285.478 )
+editor/display_folded = true
+position = Vector2( 562, 282 )
+
+[node name="Sprite" parent="PaddleRight" index="0"]
+
+texture = ExtResource( 5 )
+
+[node name="ParticlesStart" parent="PaddleRight" index="2"]
+
+position = Vector2( -12, 0 )
+
+[node name="Ball" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
 PLAYING = true
 RANDOM_START_DIRECTION = null
-START_DIRECTION = Vector2( -1, 0 )
+SPEED = 300.0
+
+[node name="Ball2" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball3" parent="." index="6" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball4" parent="." index="7" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball5" parent="." index="8" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball6" parent="." index="9" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball7" parent="." index="10" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball8" parent="." index="11" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball9" parent="." index="12" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball10" parent="." index="13" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball11" parent="." index="14" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball12" parent="." index="15" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball13" parent="." index="16" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball14" parent="." index="17" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball15" parent="." index="18" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball16" parent="." index="19" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball17" parent="." index="20" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball18" parent="." index="21" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball19" parent="." index="22" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball20" parent="." index="23" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball21" parent="." index="24" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball22" parent="." index="25" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball23" parent="." index="26" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball24" parent="." index="27" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball25" parent="." index="28" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball26" parent="." index="29" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball27" parent="." index="30" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball28" parent="." index="31" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball29" parent="." index="32" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball30" parent="." index="33" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball31" parent="." index="34" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball32" parent="." index="35" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball33" parent="." index="36" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball34" parent="." index="37" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
+SPEED = 300.0
+
+[node name="Ball35" parent="." index="38" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 286 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+PLAYING = true
+RANDOM_START_DIRECTION = null
 SPEED = 300.0
 
 
+[editable path="PaddleRight"]
