@@ -54,6 +54,7 @@ func move(dir, delta):
 
 func _on_Paddle_body_entered(body):
 	var ball = body
+	var inverted_ball_initial_dir = ball.direction * -1
 	ball.direction.x *= -1
 	
 	# Corner handling
@@ -75,7 +76,7 @@ func _on_Paddle_body_entered(body):
 	particles_start.position = Vector2(diff_vector.x, diff_vector.y)
 	
 	# Calculate rotation degrees
-	var radians_diff = atan2(ball.direction.y, ball.direction.x)
+	var radians_diff = atan2(inverted_ball_initial_dir.y, inverted_ball_initial_dir.x)
 	var degrees = radians_diff * 180/PI
 	hit_particles.rotation_degrees = degrees
 	
