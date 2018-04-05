@@ -114,12 +114,16 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 position = Vector2( 64.5479, 277.366 )
 PADDLE_CONTROLLER = 0
+CORNER_RANGE = 0.9
+RANDOMNESS_RANGE = Vector2( -0.05, 0.05 )
 
 [node name="Ball" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 511.697, 285.478 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
 PLAYING = true
+RANDOM_START_DIRECTION = null
+START_DIRECTION = Vector2( -1, 0 )
 SPEED = 300.0
 
 

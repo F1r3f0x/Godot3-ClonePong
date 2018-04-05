@@ -1,3 +1,5 @@
+# Main Script
+# F1r3f0x - 2018
 extends Node2D
 
 export (bool) var TESTING
