@@ -21,7 +21,8 @@ func _ready():
 
 
 # Initializes the ball
-func start():
+func play():
+	PLAYING = true
 	set_process(true)
 	if RANDOM_START_DIRECTION:
 		direction = get_random_direction()
@@ -29,6 +30,7 @@ func start():
 		direction = START_DIRECTION
 		
 func stop():
+	PLAYING = false
 	set_process(false)
 
 
@@ -51,9 +53,9 @@ func _process(delta):
 	particles.process_material.gravity = Vector3(direction.x, direction.y, 0).normalized() * -50
 	
 	if SPEED >= 100:
-		$Particles.emitting = true
+		particles.emitting = true
 	else:
-		$Particles.emitting = false
+		particles.emitting = false
 
 
 func get_random_direction():

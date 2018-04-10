@@ -8,6 +8,7 @@ onready var viewport_size = get_viewport_rect().size
 onready var sprite = $Sprite
 onready var particles = preload("res://Scenes/HitParticles.tscn")
 onready var particles_start = $ParticlesStart
+var ball_reff
 
 # Input Stuff
 enum CONTROLLER {PLAYER_1, PLAYER_2, GAME}
@@ -16,6 +17,7 @@ var player_inputs = {}
 
 
 # Vars
+export (bool) var PLAYING
 export (int) var SPEED
 var INITIAL_SPEED = SPEED
 var max_y = 0
@@ -35,6 +37,14 @@ func _ready():
 		1:
 			player_inputs = {"up":		"player_2_up",
 						     "down":	"player_2_down"}
+	set_process(false)
+							
+func play():
+	PLAYING = true
+	set_process(true)
+func stop():
+	PLAYING = false
+	set_process(false)
 
 func _process(delta):
 	# Input

@@ -1,15 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/open_sans_bold.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/sprites/separator.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/sprites/paddleRed.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Message.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/fonts/open_sans_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/sprites/separator.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/paddleRed.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=7]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
+MessagesScene = ExtResource( 2 )
 TESTING = false
 BALL_PATH = NodePath("Ball")
 
@@ -21,7 +23,9 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="GUIElements" type="MarginContainer" parent="GUI" index="0"]
+[node name="Message" parent="GUI" index="0" instance=ExtResource( 2 )]
+
+[node name="GUIElements" type="MarginContainer" parent="GUI" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -35,9 +39,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_constants/margin_right = 20
-custom_constants/margin_top = 0
+custom_constants/margin_top = -10
 custom_constants/margin_left = 20
-_sections_unfolded = [ "Pause", "Visibility" ]
+_sections_unfolded = [ "Anchor", "Margin", "Pause", "custom_constants" ]
 
 [node name="Score" type="HBoxContainer" parent="GUI/GUIElements" index="0"]
 
@@ -46,6 +50,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 20.0
+margin_top = -10.0
 margin_right = 1004.0
 margin_bottom = 110.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -54,8 +59,8 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Margin" ]
+alignment = 1
+_sections_unfolded = [ "Grow Direction" ]
 
 [node name="ScoreLeft" type="Label" parent="GUI/GUIElements/Score" index="0"]
 
@@ -63,21 +68,22 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_top = 5.0
 margin_right = 490.0
-margin_bottom = 110.0
+margin_bottom = 115.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "00"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags", "custom_fonts" ]
+_sections_unfolded = [ "Grow Direction", "Margin", "Rect", "Size Flags", "custom_fonts" ]
 
 [node name="ScoreRight" type="Label" parent="GUI/GUIElements/Score" index="1"]
 
@@ -86,15 +92,16 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 494.0
+margin_top = 5.0
 margin_right = 984.0
-margin_bottom = 110.0
+margin_bottom = 115.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "00"
 align = 1
 percent_visible = 1.0
@@ -107,31 +114,31 @@ _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags
 position = Vector2( 512, 300 )
 scale = Vector2( 1.5, 1.5 )
 z_index = -1
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="PaddleLeft" parent="." index="2" instance=ExtResource( 4 )]
+[node name="PaddleLeft" parent="." index="2" instance=ExtResource( 5 )]
 
-position = Vector2( 462, 282 )
+position = Vector2( 462, -109 )
 PADDLE_CONTROLLER = 0
 
-[node name="PaddleRight" parent="." index="3" instance=ExtResource( 4 )]
+[node name="PaddleRight" parent="." index="3" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 562, 282 )
+position = Vector2( 562, -109 )
 PADDLE_CONTROLLER = 1
 
 [node name="Sprite" parent="PaddleRight" index="0"]
 
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="ParticlesStart" parent="PaddleRight" index="2"]
 
 position = Vector2( -12, 0 )
 
-[node name="Ball" parent="." index="4" instance=ExtResource( 6 )]
+[node name="Ball" parent="." index="4" instance=ExtResource( 7 )]
 
-position = Vector2( 512, 286 )
+position = Vector2( 512, -105 )
 _sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
 RANDOM_START_DIRECTION = null
 SPEED = 300.0
@@ -139,7 +146,7 @@ SPEED = 300.0
 [node name="Timer" type="Timer" parent="." index="5"]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true
 autostart = false
 
