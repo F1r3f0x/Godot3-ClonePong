@@ -2,7 +2,6 @@ extends Label
 
 signal finished
 
-onready var timer = $CleanupTimer
 onready var animations = $Animations
 
 func show_off():
