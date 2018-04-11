@@ -10,20 +10,23 @@ const random_dir_y_max = 0.4
 export (bool) var PLAYING
 export (bool) var RANDOM_START_DIRECTION
 export var START_DIRECTION = Vector2()
-export (float) var SPEED
+
+export (float) var INITIAL_SPEED
+onready var SPEED = INITIAL_SPEED
+
 var direction = Vector2()
 
 
 func _ready():
-	set_process(false)
+	set_physics_process(false)
 	if PLAYING:
-		call_deferred("start") # To make sure that is executed after the root node
+		call_deferred("play") # To make sure that is executed after the root node
 
 
 # Initializes the ball
 func play():
 	PLAYING = true
-	set_process(true)
+	set_physics_process(true)
 	if RANDOM_START_DIRECTION:
 		direction = get_random_direction()
 	else:
@@ -31,10 +34,11 @@ func play():
 		
 func stop():
 	PLAYING = false
-	set_process(false)
+	set_physics_process(false)
 
 
-func _process(delta):
+func _physics_process(delta):
+	
 	# Move ball every frame
 	move_and_collide(direction.normalized() * SPEED * delta)
 	

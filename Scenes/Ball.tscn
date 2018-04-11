@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 11.2654
+radius = 10.8532
 
 [sub_resource type="Gradient" id=2]
 
@@ -79,14 +79,14 @@ collision_layer = 1
 collision_mask = 2
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform" ]
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "collision" ]
 __meta__ = {
 "_edit_group_": true
 }
 PLAYING = false
 RANDOM_START_DIRECTION = true
 START_DIRECTION = Vector2( -1, 0 )
-SPEED = 5000.0
+INITIAL_SPEED = 500.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
