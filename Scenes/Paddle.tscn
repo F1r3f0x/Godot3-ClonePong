@@ -27,8 +27,8 @@ __meta__ = {
 PADDLE_CONTROLLER = 2
 PLAYING = null
 SPEED = 500
-CORNER_RANGE = 0.9
-RANDOMNESS_RANGE = Vector2( -0.1, 0.1 )
+CORNER_RANGE = 0.95
+RANDOMNESS_RANGE = Vector2( -0.25, 0.25 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

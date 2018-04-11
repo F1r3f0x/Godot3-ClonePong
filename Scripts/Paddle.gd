@@ -8,7 +8,7 @@ onready var viewport_size = get_viewport_rect().size
 onready var sprite = $Sprite
 onready var particles = preload("res://Scenes/HitParticles.tscn")
 onready var particles_start = $ParticlesStart
-var ball_reff
+var ball_ref
 
 # Input Stuff
 enum CONTROLLER {PLAYER_1, PLAYER_2, GAME}
@@ -24,9 +24,14 @@ var max_y = 0
 var min_y = 0
 export (float, 0, 1) var CORNER_RANGE  # Height range to bounce from corner
 export var RANDOMNESS_RANGE = Vector2()
+var last_direction
+
+var pad_height_from_center
 
 
 func _ready():
+	pad_height_from_center = sprite.texture.get_size().y / 2
+	
 	min_y = sprite.texture.get_size().x / 2
 	max_y = viewport_size.y - sprite.texture.get_size().x / 2
 	
@@ -53,7 +58,13 @@ func _process(delta):
 			move(-1, delta)
 		if Input.is_action_pressed(player_inputs["down"]):
 			move(1, delta)
-
+	else:
+		if ball_ref:
+			if ball_ref.position.y > position.y + pad_height_from_center:
+				move(1, delta)
+			elif ball_ref.position.y < position.y - pad_height_from_center:
+				move(-1, delta)
+	
 	# Clamp Paddle
 	position.y = clamp(position.y, min_y, max_y)			
 
@@ -76,10 +87,10 @@ func _on_Paddle_body_entered(body):
 			ball.direction.y = 1
 		else:
 			ball.direction.y = -1
-	
-	# Add Randomness
-	var randomness = rand_range(RANDOMNESS_RANGE.x, RANDOMNESS_RANGE.y)
-	ball.direction.y += randomness
+	else:
+		# Add Randomness
+		var randomness = rand_range(RANDOMNESS_RANGE.x, RANDOMNESS_RANGE.y)
+		ball.direction.y = randomness
 
 	## Spawn Particles
 	var hit_particles = particles.instance()
