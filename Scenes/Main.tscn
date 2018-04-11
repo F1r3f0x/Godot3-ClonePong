@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/sprites/paddleRed.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=7]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 MessagesScene = ExtResource( 2 )
@@ -119,13 +119,13 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="PaddleLeft" parent="." index="2" instance=ExtResource( 5 )]
 
-position = Vector2( 462, -109 )
+position = Vector2( 462, 287 )
 PADDLE_CONTROLLER = 0
 
 [node name="PaddleRight" parent="." index="3" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 562, -109 )
+position = Vector2( 562, 287 )
 PADDLE_CONTROLLER = 1
 
 [node name="Sprite" parent="PaddleRight" index="0"]
@@ -138,10 +138,9 @@ position = Vector2( -12, 0 )
 
 [node name="Ball" parent="." index="4" instance=ExtResource( 7 )]
 
-position = Vector2( 512, -105 )
-_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index" ]
+position = Vector2( 512, 291 )
+_sections_unfolded = [ "Audio Bus", "Collision", "Pickable", "Transform", "Z Index", "collision" ]
 RANDOM_START_DIRECTION = null
-SPEED = 300.0
 
 [node name="Timer" type="Timer" parent="." index="5"]
 
@@ -149,6 +148,10 @@ process_mode = 1
 wait_time = 0.5
 one_shot = true
 autostart = false
+
+[connection signal="body_entered" from="PaddleLeft" to="." method="_on_Paddle_body_entered"]
+
+[connection signal="body_entered" from="PaddleRight" to="." method="_on_Paddle_body_entered"]
 
 
 [editable path="PaddleRight"]

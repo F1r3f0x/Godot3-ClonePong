@@ -30,10 +30,12 @@ var score_left = 0
 var score_right = 0
 var level = 0
 
+var hits = 0
 
 func _ready():
-	print(gamemode)
 	randomize()
+	
+	#paddle_left.ball_ref = ball
 	
 	if TESTING:
 		ball.PLAYING = false
@@ -45,17 +47,36 @@ func new_game():
 	score_right = 0
 	level = 0
 	
+	ball.RANDOM_START_DIRECTION = false
+	
 	if gamemode == GAMEMODES.GAMEMODE_VS:
 		paddle_right.PADDLE_CONTROLLER = paddle_right.CONTROLLER.PLAYER_2
 	else:
 		paddle_right.PADDLE_CONTROLLER = paddle_right.CONTROLLER.GAME
+		paddle_right.ball_ref = ball
+		paddle_right.SPEED = 350
 	
-	ball_start_dir = GAMESIDE.values()[randi() % GAMESIDE.size()]
-	ball.stop()
-	paddle_left.stop()
-	paddle_right.stop()
+	setup_round()
+		
+	$GUI/Message.text = "Get Ready!"
+	$GUI/Message.show_off()
+	yield($GUI/Message, "finished")
+	$GUI/Message.fade()
+	yield($GUI/Message, "finished")
 	
-	setup_board()
+	$Timer.start()
+	yield($Timer, "timeout")
+		
+	ball.play()
+	
+	paddle_left.play()
+	paddle_right.play()
+	
+	
+func new_round():
+	setup_round()
+		
+	ball.START_DIRECTION = Vector2(ball_start_dir,0)
 	
 	$GUI/Message.text = "Get Ready!"
 	$GUI/Message.show_off()
@@ -66,21 +87,13 @@ func new_game():
 	$Timer.start()
 	yield($Timer, "timeout")
 	
-	if gamemode == GAMEMODES.GAMEMODE_SOLO:
-		ball.RANDOM_START_DIRECTION = false
-	else:
-		ball.RANDOM_START_DIRECTION = true
-		
-	paddle_left.play()
-	paddle_right.play()
 	ball.play()
 	
+	paddle_left.play()
+	paddle_right.play()
 	
-func next_round():
-	pass
 	
-	
-func setup_board():
+func setup_round():
 	paddle_left.position = Vector2(
 		80,
 		viewport_rect.size.y / 2)
@@ -95,6 +108,11 @@ func setup_board():
 	ball.direction = Vector2(
 		ball_start_dir,
 		0)
+	ball.SPEED = ball.INITIAL_SPEED
+	
+	ball.stop()
+	paddle_left.stop()
+	paddle_right.stop()
 
 
 func end_game():
@@ -102,12 +120,29 @@ func end_game():
 
 
 func _process(delta):
+	# Update Scores
+	label_score_right.text = str(score_right)
+	label_score_left.text = str(score_left)
+	
 	if TESTING:
 		ball.position = get_viewport().get_mouse_position()
 	if ball.position.x <= score_line_left_x:
-			new_game()
+			score_right += 1
+			ball_start_dir = 1
+			new_round()
 	if ball.position.x >= score_line_right_x:
-			new_game()
+			score_left += 1
+			ball_start_dir = -1
+			new_round()
 			
 	if Input.is_key_pressed(KEY_X):
+		ball.stop()
+	if Input.is_key_pressed(KEY_R):
 		new_game()
+
+func _on_Paddle_body_entered(body):
+	hits += 1
+	if hits >= 4 and ball.SPEED <= 1000:
+		hits = 0
+		ball.SPEED += 50
+		print(ball.SPEED)
