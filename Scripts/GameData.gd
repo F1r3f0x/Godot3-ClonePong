@@ -7,13 +7,18 @@ enum GAMEMODES {GAMEMODE_VS, GAMEMODE_SOLO}
 
 var gamemode
 
+var ingame = false
+
 func _ready():
 	if not gamemode:
 		gamemode = GAMEMODES.GAMEMODE_SOLO
 		
 func _process(delta):
 	if Input.is_action_just_released("ui_quit"):
-		get_tree().quit()
+		if ingame:
+			get_tree().change_scene("res://Scenes/MainMenu.tscn")
+		else:
+			get_tree().quit()
 	
 	if Input.is_action_just_released("ui_fullscreen"):
 		if OS.is_window_fullscreen():

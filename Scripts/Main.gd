@@ -23,10 +23,15 @@ var score_line_left_x = 0
 var score_line_right_x = 1024
 
 var ball_start_dir = 0
+
+var MAX_SCORES = 3
+
 var score_left = 0
 var score_right = 0
 
 var hits = 0  # Number of hits to paddles
+
+var playing
 
 
 func _ready():
@@ -40,6 +45,8 @@ func _ready():
 
 
 func new_game():
+	playing = true 
+	
 	score_left = 0
 	score_right = 0
 	
@@ -111,10 +118,6 @@ func setup_round():
 	$PaddleRight.stop()
 
 
-func end_game():
-	pass
-
-
 func _process(delta):
 	# Update Scores
 	label_score_right.text = str(score_right)
@@ -128,21 +131,31 @@ func _process(delta):
 			ball.stop()
 		if Input.is_key_pressed(KEY_R):
 			new_game()
-		
-	## Check if a player scores
-	if ball.position.x <= score_line_left_x:
-			$Audio.play()
-			score_right += 1
-			ball_start_dir = 1
-			new_round()
+				
+	if playing:
+		## Check if a player scores
+		if ball.position.x <= score_line_left_x:
+				$Audio.play()
+				score_right += 1
+				ball_start_dir = -1
+				new_round()
+				
+		if ball.position.x >= score_line_right_x:
+				$Audio.play()
+				score_left += 1
+				ball_start_dir = 1
+				new_round()
+		##
+		if score_left >= MAX_SCORES or score_right >= MAX_SCORES:
+			playing = false
+			if score_left > score_right:
+				$GUI/Message.text = "Blue Wins!" 
+			elif score_left < score_right:
+				$GUI/Message.text = "Red Wins!"
 			
-	if ball.position.x >= score_line_right_x:
-			$Audio.play()
-			score_left += 1
-			ball_start_dir = -1
-			new_round()
-	##
-
+			$GUI/Message.show_off()
+			yield($GUI/Message, "finished")
+			Input.action_release("ui_quit")
 
 # Increase speed during a round
 func _on_Paddle_body_entered(body):
