@@ -21,7 +21,6 @@ func _ready():
 		call_deferred("play") # To make sure that is executed after the root node
 
 
-# Initializes the ball
 func play():
 	PLAYING = true
 	set_physics_process(true)
@@ -34,7 +33,7 @@ func stop():
 	PLAYING = false
 	set_physics_process(false)
 	
-
+# Boop!
 func boop():
 	$Audio.play()
 
@@ -48,10 +47,6 @@ func _physics_process(delta):
 	position.y = clamp(position.y, 0, get_viewport_rect().size.y)
 	
 	# Walls collision
-	#if (direction.x >= 0 and position.x >= 1024) or (direction.x < 0 and position.x <=0):
-	#	direction.x *= -1
-	#	boop()
-		
 	if (direction.y >= 0 and position.y >= 600) or (direction.y < 0 and position.y <=0):
 		direction.y *= -1
 		boop()

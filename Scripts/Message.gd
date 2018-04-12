@@ -1,4 +1,7 @@
+# Message Script
+# F1r3f0x - 2018
 extends Label
+
 
 signal finished
 

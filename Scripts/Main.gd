@@ -25,14 +25,12 @@ var score_line_right_x = 1024
 var ball_start_dir = 0
 var score_left = 0
 var score_right = 0
-var level = 0
 
-var hits = 0
+var hits = 0  # Number of hits to paddles
 
 
 func _ready():
 	randomize()
-	
 	$PaddleLeft.ball_ref = ball
 	
 	if TESTING:
@@ -44,7 +42,6 @@ func _ready():
 func new_game():
 	score_left = 0
 	score_right = 0
-	level = 0
 	
 	ball.RANDOM_START_DIRECTION = false
 	
@@ -123,26 +120,31 @@ func _process(delta):
 	label_score_right.text = str(score_right)
 	label_score_left.text = str(score_left)
 	
+	# Follow the mouse pointer if testing
 	if TESTING:
 		ball.position = get_viewport().get_mouse_position()
 		
+		if Input.is_key_pressed(KEY_X):
+			ball.stop()
+		if Input.is_key_pressed(KEY_R):
+			new_game()
+		
+	## Check if a player scores
 	if ball.position.x <= score_line_left_x:
 			$Audio.play()
 			score_right += 1
 			ball_start_dir = 1
 			new_round()
+			
 	if ball.position.x >= score_line_right_x:
 			$Audio.play()
 			score_left += 1
 			ball_start_dir = -1
 			new_round()
-			
-	if Input.is_key_pressed(KEY_X):
-		ball.stop()
-	if Input.is_key_pressed(KEY_R):
-		new_game()
+	##
 
 
+# Increase speed during a round
 func _on_Paddle_body_entered(body):
 	hits += 1
 	if hits >= 4 and ball.SPEED <= 1000:

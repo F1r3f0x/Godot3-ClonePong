@@ -21,7 +21,7 @@ var INITIAL_SPEED = SPEED
 var max_y = 0
 var min_y = 0
 export (float, 0, 1) var CORNER_RANGE  # Height range to bounce from corner
-export var RANDOMNESS_RANGE = Vector2()
+export var RANDOMNESS_RANGE = Vector2() # Randomness to add when hit in the center
 var last_direction
 
 var pad_height_from_center
@@ -57,6 +57,7 @@ func _process(delta):
 		if Input.is_action_pressed(player_inputs["down"]):
 			move(1, delta)
 	else:
+		# AI
 		if ball_ref:
 			if ball_ref.position.y > position.y + pad_height_from_center:
 				move(1, delta)
@@ -73,9 +74,11 @@ func move(dir, delta):
 
 func _on_Paddle_body_entered(body):
 	var ball = body
+	
 	ball.boop()
-	var inverted_ball_initial_dir = ball.direction * -1
 	ball.direction.x *= -1
+	
+	var inverted_ball_initial_dir = ball.direction * -1
 	
 	# Corner handling
 	var diff_vector = ball.position - position
@@ -87,7 +90,7 @@ func _on_Paddle_body_entered(body):
 		else:
 			ball.direction.y = -1
 	else:
-		# Add Randomness
+		# Add Randomness if hits in the center
 		var randomness = rand_range(RANDOMNESS_RANGE.x, RANDOMNESS_RANGE.y)
 		ball.direction.y = randomness
 
