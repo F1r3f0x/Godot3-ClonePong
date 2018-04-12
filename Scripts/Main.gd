@@ -24,7 +24,7 @@ var score_line_right_x = 1024
 
 var ball_start_dir = 0
 
-var MAX_SCORES = 3
+var MAX_SCORES = 4
 
 var score_left = 0
 var score_right = 0

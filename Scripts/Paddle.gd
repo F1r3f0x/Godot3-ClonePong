@@ -76,9 +76,10 @@ func _on_Paddle_body_entered(body):
 	var ball = body
 	
 	ball.boop()
-	ball.direction.x *= -1
 	
 	var inverted_ball_initial_dir = ball.direction * -1
+	ball.direction.x *= -1
+	
 	
 	# Corner handling
 	var diff_vector = ball.position - position
