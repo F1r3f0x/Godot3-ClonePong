@@ -29,6 +29,7 @@ var level = 0
 
 var hits = 0
 
+
 func _ready():
 	randomize()
 	
@@ -38,6 +39,7 @@ func _ready():
 		ball.PLAYING = false
 	else:
 		new_game()
+
 
 func new_game():
 	score_left = 0
@@ -139,6 +141,7 @@ func _process(delta):
 		ball.stop()
 	if Input.is_key_pressed(KEY_R):
 		new_game()
+
 
 func _on_Paddle_body_entered(body):
 	hits += 1

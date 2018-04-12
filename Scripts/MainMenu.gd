@@ -13,3 +13,11 @@ func _on_AIGame_pressed():
 func _on_VSGame_pressed():
 	GameData.gamemode = GameData.GAMEMODES.GAMEMODE_VS
 	get_tree().change_scene("res://Scenes/Main.tscn")
+
+
+func _process(delta):
+	if Input.is_action_just_released("ui_quit"):
+		get_tree().quit()
+	
+	if Input.is_action_just_released("ui_fullscreen"):
+		OS.set_window_fullscreen(true)
