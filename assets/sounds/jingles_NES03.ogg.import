@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/jingles_NES03.ogg-38b10e5f11ef4e9675368e6122749192.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/jingles_NES03.ogg"
+source_md5="25129b9906086f303aed4a9542e612ba"
+
+dest_files=[ "res://.import/jingles_NES03.ogg-38b10e5f11ef4e9675368e6122749192.oggstr" ]
+dest_md5="fba9941bc7994d2f5c0ae29b50ae8ea1"
+
+[params]
+
+loop=false
+loop_offset=0

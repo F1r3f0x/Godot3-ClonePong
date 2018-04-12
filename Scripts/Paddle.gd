@@ -5,9 +5,7 @@ extends Area2D
 
 # References
 onready var viewport_size = get_viewport_rect().size
-onready var sprite = $Sprite
 onready var particles = preload("res://Scenes/HitParticles.tscn")
-onready var particles_start = $ParticlesStart
 var ball_ref
 
 # Input Stuff
@@ -30,10 +28,10 @@ var pad_height_from_center
 
 
 func _ready():
-	pad_height_from_center = sprite.texture.get_size().y / 2
+	pad_height_from_center = $Sprite.texture.get_size().y / 2
 	
-	min_y = sprite.texture.get_size().x / 2
-	max_y = viewport_size.y - sprite.texture.get_size().x / 2
+	min_y = $Sprite.texture.get_size().x / 2
+	max_y = viewport_size.y - $Sprite.texture.get_size().x / 2
 	
 	match PADDLE_CONTROLLER:
 		0:
@@ -75,6 +73,7 @@ func move(dir, delta):
 
 func _on_Paddle_body_entered(body):
 	var ball = body
+	ball.boop()
 	var inverted_ball_initial_dir = ball.direction * -1
 	ball.direction.x *= -1
 	
@@ -94,14 +93,14 @@ func _on_Paddle_body_entered(body):
 
 	## Spawn Particles
 	var hit_particles = particles.instance()
-	particles_start.position = Vector2(diff_vector.x, diff_vector.y)
+	$ParticlesStart.position = Vector2(diff_vector.x, diff_vector.y)
 	
 	# Calculate rotation degrees
 	var radians_diff = atan2(inverted_ball_initial_dir.y, inverted_ball_initial_dir.x)
 	var degrees = radians_diff * 180/PI
 	hit_particles.rotation_degrees = degrees
 	
-	hit_particles.position = particles_start.position
+	hit_particles.position = $ParticlesStart.position
 	hit_particles.emitting = true
 	add_child(hit_particles)
 	##
