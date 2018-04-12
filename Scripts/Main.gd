@@ -11,9 +11,6 @@ onready var viewport_rect = get_viewport_rect()
 export (NodePath) var BALL_PATH
 onready var ball = get_node(BALL_PATH)
 
-onready var paddle_left= $PaddleLeft
-onready var paddle_right = $PaddleRight
-
 onready var label_score_left = $GUI/GUIElements/Score/ScoreLeft
 onready var label_score_right = $GUI/GUIElements/Score/ScoreRight
 
@@ -35,7 +32,7 @@ var hits = 0
 func _ready():
 	randomize()
 	
-	#paddle_left.ball_ref = ball
+	$PaddleLeft.ball_ref = ball
 	
 	if TESTING:
 		ball.PLAYING = false
@@ -50,11 +47,11 @@ func new_game():
 	ball.RANDOM_START_DIRECTION = false
 	
 	if gamemode == GAMEMODES.GAMEMODE_VS:
-		paddle_right.PADDLE_CONTROLLER = paddle_right.CONTROLLER.PLAYER_2
+		$PaddleRight.PADDLE_CONTROLLER = $PaddleRight.CONTROLLER.PLAYER_2
 	else:
-		paddle_right.PADDLE_CONTROLLER = paddle_right.CONTROLLER.GAME
-		paddle_right.ball_ref = ball
-		paddle_right.SPEED = 350
+		$PaddleRight.PADDLE_CONTROLLER = $PaddleRight.CONTROLLER.GAME
+		$PaddleRight.ball_ref = ball
+		$PaddleRight.SPEED = 350
 	
 	setup_round()
 		
@@ -69,8 +66,8 @@ func new_game():
 		
 	ball.play()
 	
-	paddle_left.play()
-	paddle_right.play()
+	$PaddleLeft.play()
+	$PaddleRight.play()
 	
 	
 func new_round():
@@ -89,16 +86,16 @@ func new_round():
 	
 	ball.play()
 	
-	paddle_left.play()
-	paddle_right.play()
+	$PaddleLeft.play()
+	$PaddleRight.play()
 	
 	
 func setup_round():
-	paddle_left.position = Vector2(
+	$PaddleLeft.position = Vector2(
 		80,
 		viewport_rect.size.y / 2)
 		
-	paddle_right.position = Vector2(
+	$PaddleRight.position = Vector2(
 		944,
 		viewport_rect.size.y / 2)
 		
@@ -111,8 +108,8 @@ func setup_round():
 	ball.SPEED = ball.INITIAL_SPEED
 	
 	ball.stop()
-	paddle_left.stop()
-	paddle_right.stop()
+	$PaddleLeft.stop()
+	$PaddleRight.stop()
 
 
 func end_game():
@@ -126,11 +123,14 @@ func _process(delta):
 	
 	if TESTING:
 		ball.position = get_viewport().get_mouse_position()
+		
 	if ball.position.x <= score_line_left_x:
+			$Audio.play()
 			score_right += 1
 			ball_start_dir = 1
 			new_round()
 	if ball.position.x >= score_line_right_x:
+			$Audio.play()
 			score_left += 1
 			ball_start_dir = -1
 			new_round()
@@ -145,4 +145,3 @@ func _on_Paddle_body_entered(body):
 	if hits >= 4 and ball.SPEED <= 1000:
 		hits = 0
 		ball.SPEED += 50
-		print(ball.SPEED)

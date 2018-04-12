@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Message.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/paddleRed.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sounds/jingles_NES03.ogg" type="AudioStream" id=8]
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -148,6 +149,18 @@ process_mode = 1
 wait_time = 0.5
 one_shot = true
 autostart = false
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="." index="6"]
+
+position = Vector2( 512, 300 )
+stream = ExtResource( 8 )
+volume_db = 2.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Jingle"
+area_mask = 0
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="PaddleLeft" to="." method="_on_Paddle_body_entered"]
 
